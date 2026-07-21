@@ -6,210 +6,125 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Hussain Quiz ❤️</title>
+<title>Result ❤️</title>
 
 <style>
-@media (max-width:600px){
 
-.container{
-width:92%;
-padding:20px;
-}
-
-h1{
-font-size:28px;
-}
-
-.question{
-font-size:20px;
-}
-
-input{
-width:90%;
-font-size:16px;
-padding:12px;
-}
-
-button{
-font-size:17px;
-padding:12px 30px;
-}
-
-}
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial, sans-serif;
+font-family:Arial,sans-serif;
 }
 
 body{
 
-min-height:100vh;
+height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
 background:linear-gradient(135deg,#ffd1dc,#fff5fa);
-transition:.4s;
+overflow:hidden;
 
 }
 
-.container{
+
+.box{
 
 width:90%;
 max-width:600px;
 background:white;
-padding:30px;
+padding:40px;
 border-radius:30px;
 text-align:center;
-box-shadow:0 10px 30px rgba(0,0,0,.15);
-
-}
-
-.hearts{
-
-font-size:30px;
-margin-bottom:20px;
-
-}
-
-.timer{
-
-font-size:50px;
-margin-bottom:20px;
-
-animation:move 1s infinite alternate;
+box-shadow:0 10px 40px rgba(0,0,0,.15);
 
 }
 
 
-@keyframes move{
+#ready{
 
-from{
-transform:translateY(0);
+font-size:45px;
+color:#ff4f8b;
+
 }
 
-to{
-transform:translateY(8px);
+
+#count{
+
+font-size:80px;
+color:#ff4f8b;
+display:none;
+
 }
+
+
+#result{
+
+display:none;
 
 }
 
 
 h1{
 
-color:#ff3f81;
-margin-bottom:20px;
-
-}
-
-
-.question{
-
-font-size:22px;
-color:#555;
-margin-bottom:20px;
-
-}
-
-
-textarea{
-
-width:100%;
-height:100px;
-border-radius:20px;
-border:2px solid #ffc0d5;
-padding:15px;
-font-size:18px;
-resize:none;
-
-}
-
-
-button{
-
-margin-top:20px;
-padding:15px 35px;
-border:none;
-border-radius:50px;
-background:#ff4f8b;
-color:white;
-font-size:20px;
-cursor:pointer;
-
-animation:pulse 1.5s infinite;
-
-}
-
-
-@keyframes pulse{
-
-50%{
-transform:scale(1.08);
-}
-
-}
-
-
-.correct{
-
-animation:celebrate .8s;
-
-}
-
-
-@keyframes celebrate{
-
-50%{
-transform:scale(1.05);
-}
-
-}
-
-
-.wrong{
-
-background:#ffb3b3;
-
-}
-
-
-.shake{
-
-animation:shake .5s;
-
-}
-
-
-@keyframes shake{
-
-25%{
-transform:translateX(-10px);
-}
-
-50%{
-transform:translateX(10px);
-}
-
-75%{
-transform:translateX(-10px);
-}
-
-}
-
-
-.message{
-
 font-size:45px;
-display:none;
+color:#ff3f81;
+
+}
+
+
+.score{
+
+font-size:70px;
+color:#ff4f8b;
 margin:20px;
 
 }
 
 
-.balloons{
+.thanks{
 
-font-size:40px;
+font-size:45px;
+color:#ff3f81;
+margin-top:30px;
+
+animation:shine 1.5s infinite alternate;
+
+}
+
+
+@keyframes shine{
+
+from{
+transform:scale(1);
+}
+
+to{
+transform:scale(1.1);
+}
+
+}
+
+
+.star{
+
+position:absolute;
+font-size:30px;
+animation:float 4s infinite;
+
+}
+
+
+@keyframes float{
+
+from{
+transform:translateY(100vh);
+}
+
+to{
+transform:translateY(-100vh);
+}
 
 }
 
@@ -222,40 +137,101 @@ font-size:40px;
 <body>
 
 
-<div class="container" id="box">
+<div class="box">
 
 
-<div class="hearts" id="hearts">
-❤️❤️❤️❤️❤️
+<div id="ready">
+Ready? ❤️
 </div>
 
 
-<div class="timer">
-⏳
+<div id="count">
+3
 </div>
 
 
-<h1>Question ❤️</h1>
+<div id="result">
+
+<h1>Your Score ❤️</h1>
+
+<div class="score" id="score"></div>
 
 
-<div class="question" id="question"></div>
-
-
-<textarea id="answer" placeholder="Write your answer..."></textarea>
-
-
-<button onclick="checkAnswer()">Check ❤️</button>
-
-
-<div class="message" id="message"></div>
-
-
-<button id="next" onclick="nextQuestion()" style="display:none">
-Next ➡️
-</button>
+<div class="thanks">
+✨ ⭐ Thank You ❤️ ⭐ ✨
+</div>
 
 
 </div>
+
+
+</div>
+
+
+
+<script>
+
+
+let count=3;
+
+
+let timer=setInterval(()=>{
+
+
+count--;
+
+
+document.getElementById("count").innerHTML=count;
+
+
+if(count==0){
+
+clearInterval(timer);
+
+
+document.getElementById("ready").style.display="none";
+
+document.getElementById("count").style.display="none";
+
+
+document.getElementById("result").style.display="block";
+
+
+let score=localStorage.getItem("score");
+
+
+document.getElementById("score").innerHTML=
+score+" / 5";
+
+
+for(let i=0;i<25;i++){
+
+let star=document.createElement("div");
+
+star.className="star";
+
+star.innerHTML="✨❤️";
+
+star.style.left=Math.random()*100+"vw";
+
+star.style.animationDuration=(3+Math.random()*3)+"s";
+
+document.body.appendChild(star);
+
+}
+
+
+}
+
+},1000);
+
+
+</script>
+
+
+</body>
+
+</html>
 
 
 
