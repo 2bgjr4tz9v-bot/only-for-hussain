@@ -18,119 +18,69 @@ font-family:'Poppins',sans-serif;
 }
 
 body{
-
 height:100vh;
-
 display:flex;
-
 justify-content:center;
-
 align-items:center;
-
 background:linear-gradient(135deg,#ffd1dc,#ffe6f0,#fff5fa);
-
 overflow:hidden;
-
 }
 
 .container{
-
 width:90%;
-
 max-width:900px;
-
 background:rgba(255,255,255,.25);
-
 backdrop-filter:blur(18px);
-
 border-radius:30px;
-
 padding:40px;
-
 text-align:center;
-
 box-shadow:0 10px 40px rgba(0,0,0,.15);
-
 }
 
 h1{
-
 font-size:50px;
-
 color:#ff3f81;
-
 margin-bottom:20px;
-
 }
 
 p{
-
 font-size:22px;
-
 color:#555;
-
 margin-bottom:30px;
-
 }
 
 button{
-
 background:#ff4f8b;
-
 color:white;
-
 border:none;
-
 padding:18px 45px;
-
 font-size:22px;
-
 border-radius:50px;
-
 cursor:pointer;
-
 transition:.4s;
-
 }
 
 button:hover{
-
 transform:scale(1.08);
-
 box-shadow:0 0 25px pink;
-
 }
 
 .heart{
-
 position:absolute;
-
 color:pink;
-
 animation:float 8s linear infinite;
-
 font-size:25px;
-
 }
 
 @keyframes float{
-
 0%{
-
 transform:translateY(100vh);
-
 opacity:0;
-
 }
-
 100%{
-
 transform:translateY(-100vh);
-
 opacity:1;
-
 }
-love.jpeg.jpeg
 }
 
 </style>
@@ -141,42 +91,26 @@ love.jpeg.jpeg
 
 <div class="container">
 
-<h1>Hii Hussein ❤️</h1>
+<h1>Welcome Hussein ❤️</h1>
 
-<p>This made with all my love 🤍</p>
+<p>This surprise was made with all my love 🤍</p>
 
 <img
- 
+  src="love.jpeg.jpeg"
+  alt="Our Photo"
+  style="
+    width:320px;
+    border-radius:25px;
+    box-shadow:0 0 30px rgba(255,105,180,.6);
+    border:6px solid white;
+    margin:20px 0;
+  "
 >
 
 <br>
-
-<button>Start The Surprise ✨</button>
+<button>Click Here ❤️</button>
 
 </div>
 
-<script>
-
-for(let i=0;i<40;i++){
-
-let heart=document.createElement("div");
-
-heart.innerHTML="❤️";
-
-heart.className="heart";
-
-heart.style.left=Math.random()*100+"vw";
-
-heart.style.animationDuration=(5+Math.random()*5)+"s";
-
-heart.style.fontSize=(20+Math.random()*30)+"px";
-
-document.body.appendChild(heart);
-
-}
-
-</script>
-
 </body>
-
 </html>
