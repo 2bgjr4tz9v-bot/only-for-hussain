@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Result ❤️</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#ffd1dc,#fff5fa);
+overflow:hidden;
+
+}
+
+
+.box{
+
+width:90%;
+max-width:600px;
+background:white;
+padding:40px;
+border-radius:30px;
+text-align:center;
+box-shadow:0 10px 40px rgba(0,0,0,.15);
+
+}
+
+
+#ready{
+
+font-size:45px;
+color:#ff4f8b;
+
+}
+
+
+#count{
+
+font-size:80px;
+color:#ff4f8b;
+display:none;
+
+}
+
+
+#result{
+
+display:none;
+
+}
+
+
+h1{
+
+font-size:45px;
+color:#ff3f81;
+
+}
+
+
+.score{
+
+font-size:70px;
+color:#ff4f8b;
+margin:20px;
+
+}
+
+
+.thanks{
+
+font-size:45px;
+color:#ff3f81;
+margin-top:30px;
+
+animation:shine 1.5s infinite alternate;
+
+}
+
+
+@keyframes shine{
+
+from{
+transform:scale(1);
+}
+
+to{
+transform:scale(1.1);
+}
+
+}
+
+
+.star{
+
+position:absolute;
+font-size:30px;
+animation:float 4s infinite;
+
+}
+
+
+@keyframes float{
+
+from{
+transform:translateY(100vh);
+}
+
+to{
+transform:translateY(-100vh);
+}
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="box">
+
+
+<div id="ready">
+Ready? ❤️
+</div>
+
+
+<div id="count">
+3
+</div>
+
+
+<div id="result">
+
+<h1>Your Score ❤️</h1>
+
+<div class="score" id="score"></div>
+
+
+<div class="thanks">
+✨ ⭐ Thank You ❤️ ⭐ ✨
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+
+let count=3;
+
+
+let timer=setInterval(()=>{
+
+
+count--;
+
+
+document.getElementById("count").innerHTML=count;
+
+
+if(count==0){
+
+clearInterval(timer);
+
+
+document.getElementById("ready").style.display="none";
+
+document.getElementById("count").style.display="none";
+
+
+document.getElementById("result").style.display="block";
+
+
+let score=localStorage.getItem("score");
+
+
+document.getElementById("score").innerHTML=
+score+" / 5";
+
+
+for(let i=0;i<25;i++){
+
+let star=document.createElement("div");
+
+star.className="star";
+
+star.innerHTML="✨❤️";
+
+star.style.left=Math.random()*100+"vw";
+
+star.style.animationDuration=(3+Math.random()*3)+"s";
+
+document.body.appendChild(star);
+
+}
+
+
+}
+
+},1000);
+
+
+</script>
+
+
+</body>
+
+</html>
