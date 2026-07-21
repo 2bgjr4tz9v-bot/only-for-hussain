@@ -407,18 +407,18 @@ document.getElementById("message").style.display="none";
 
 document.getElementById("box").classList.remove("shake");
 
-
 index++;
 
-
-if(index<questions.length){
+if(index < questions.length){
 
 loadQuestion();
 
 }
 
 else{
+
 localStorage.setItem("score", score);
+
 window.location.href="result.html";
 
 }
@@ -430,8 +430,3 @@ loadQuestion();
 
 
 </script>
-
-
-</body>
-
-</html>
