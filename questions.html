@@ -269,6 +269,7 @@ a:"ربنا يسهل"
 let index=0;
 
 let hearts=5;
+let score=0;  
 
 let time=30;
 
@@ -322,7 +323,7 @@ wrong();
 
 
 
-function correct(){
+function correct(){score++;
 
 clearInterval(timer);
 
@@ -391,7 +392,7 @@ loadQuestion();
 }
 
 else{
-
+localStorage.setItem("score", score);
 window.location.href="result.html";
 
 }
