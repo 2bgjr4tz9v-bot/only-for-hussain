@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Result ❤️</title>
+<title>Your Score ❤️</title>
 
 <style>
 
@@ -18,63 +18,33 @@ font-family:Arial,sans-serif;
 }
 
 body{
-
 height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
 background:linear-gradient(135deg,#ffd1dc,#fff5fa);
-overflow:hidden;
-
 }
 
-
-.box{
+.container{
 
 width:90%;
-max-width:600px;
+max-width:500px;
 background:white;
-padding:40px;
+padding:35px;
 border-radius:30px;
 text-align:center;
-box-shadow:0 10px 40px rgba(0,0,0,.15);
+box-shadow:0 10px 30px rgba(0,0,0,.15);
 
 }
-
 
 #ready{
 
-font-size:45px;
-color:#ff4f8b;
-
-}
-
-
-#count{
-
-font-size:80px;
-color:#ff4f8b;
-display:none;
-
-}
-
-
-#result{
-
-display:none;
-
-}
-
-
-h1{
-
-font-size:45px;
+font-size:40px;
 color:#ff3f81;
 
 }
 
-
-.score{
+#count{
 
 font-size:70px;
 color:#ff4f8b;
@@ -82,49 +52,45 @@ margin:20px;
 
 }
 
+.result{
+
+display:none;
+
+}
+
+h1{
+
+color:#ff3f81;
+
+}
+
+.score{
+
+font-size:60px;
+margin:25px;
+color:#333;
+
+}
+
 
 .thanks{
 
-font-size:45px;
-color:#ff3f81;
-margin-top:30px;
-
-animation:shine 1.5s infinite alternate;
-
-}
-
-
-@keyframes shine{
-
-from{
-transform:scale(1);
-}
-
-to{
-transform:scale(1.1);
-}
-
-}
-
-
-.star{
-
-position:absolute;
 font-size:30px;
-animation:float 4s infinite;
+color:#ff3f81;
+margin-bottom:25px;
 
 }
 
 
-@keyframes float{
+button{
 
-from{
-transform:translateY(100vh);
-}
-
-to{
-transform:translateY(-100vh);
-}
+background:#ff4f8b;
+color:white;
+border:none;
+padding:15px 40px;
+font-size:20px;
+border-radius:50px;
+cursor:pointer;
 
 }
 
@@ -137,11 +103,11 @@ transform:translateY(-100vh);
 <body>
 
 
-<div class="box">
+<div class="container">
 
 
 <div id="ready">
-Ready? ❤️
+Ready ❤️
 </div>
 
 
@@ -150,16 +116,31 @@ Ready? ❤️
 </div>
 
 
-<div id="result">
 
-<h1>Your Score ❤️</h1>
+<div class="result" id="result">
 
-<div class="score" id="score"></div>
+
+<h1>
+Your Score
+</h1>
+
+
+<div class="score" id="score">
+</div>
 
 
 <div class="thanks">
-✨ ⭐ Thank You ❤️ ⭐ ✨
+Thank You ❤️
 </div>
+
+
+<a href="letter.html">
+
+<button>
+Open Your Letter 💌
+</button>
+
+</a>
 
 
 </div>
@@ -170,7 +151,6 @@ Ready? ❤️
 
 
 <script>
-
 
 let count=3;
 
@@ -180,11 +160,11 @@ let timer=setInterval(()=>{
 
 count--;
 
-
 document.getElementById("count").innerHTML=count;
 
 
 if(count==0){
+
 
 clearInterval(timer);
 
@@ -194,215 +174,20 @@ document.getElementById("ready").style.display="none";
 document.getElementById("count").style.display="none";
 
 
-document.getElementById("result").style.display="block";
-
-
 let score=localStorage.getItem("score");
 
 
 document.getElementById("score").innerHTML=
-score+" / 5";
+score + "/5 ❤️";
 
 
-for(let i=0;i<25;i++){
-
-let star=document.createElement("div");
-
-star.className="star";
-
-star.innerHTML="✨❤️";
-
-star.style.left=Math.random()*100+"vw";
-
-star.style.animationDuration=(3+Math.random()*3)+"s";
-
-document.body.appendChild(star);
-
-}
+document.getElementById("result").style.display="block";
 
 
 }
+
 
 },1000);
-
-
-</script>
-
-
-</body>
-
-</html>
-
-
-
-<script>
-
-
-let questions=[
-
-{
-q:"أول مقابلة لينا كنت لابسة طرحة لونها إيه؟",
-a:"اسود"
-},
-
-{
-q:"أكتر أكلة بحبها إيه؟",
-a:"حواوشي"
-},
-
-{
-q:"أكتر مغني نفسي أحضرله حفلة مين؟",
-a:"تامر"
-},
-
-{
-q:"بتحبني ولا لا؟",
-a:"لا"
-},
-
-{
-q:"هنتجوز إمتى؟",
-a:"ربنا يسهل"
-}
-
-];
-
-
-let index=0;
-
-let hearts=5;
-let score=0;  
-
-let time=30;
-
-let timer;
-
-
-function loadQuestion(){
-
-document.getElementById("question").innerHTML=
-questions[index].q;
-
-document.getElementById("answer").value="";
-
-time=30;
-
-clearInterval(timer);
-
-timer=setInterval(()=>{
-
-time--;
-
-if(time<=0){
-
-wrong();
-
-}
-
-},1000);
-
-}
-
-
-function checkAnswer(){
-
-let user=document.getElementById("answer").value.toLowerCase();
-
-
-if(user.includes(questions[index].a)){
-
-correct();
-
-}
-
-else{
-
-wrong();
-
-}
-
-}
-
-
-
-function correct(){score++;
-
-clearInterval(timer);
-
-document.body.className="correct";
-
-document.getElementById("message").innerHTML=
-"🎈❤️🎈";
-
-document.getElementById("message").style.display="block";
-
-document.getElementById("next").style.display="inline-block";
-
-
-}
-
-
-function wrong(){
-
-clearInterval(timer);
-
-hearts--;
-
-document.getElementById("hearts").innerHTML=
-"❤️".repeat(hearts)+"🖤";
-
-
-document.body.classList.add("wrong");
-
-document.getElementById("box").classList.add("shake");
-
-
-document.getElementById("message").innerHTML=
-"Oppss 😅";
-
-
-document.getElementById("message").style.display="block";
-
-
-setTimeout(()=>{
-
-nextQuestion();
-
-},1500);
-
-
-}
-
-
-
-function nextQuestion(){
-
-document.body.className="";
-
-document.getElementById("message").style.display="none";
-
-document.getElementById("box").classList.remove("shake");
-
-
-index++;
-
-
-if(index<questions.length){
-
-loadQuestion();
-
-}
-
-else{
-localStorage.setItem("score", score);
-window.location.href="result.html";
-
-}
-
-}
-
-
-loadQuestion();
 
 
 </script>
